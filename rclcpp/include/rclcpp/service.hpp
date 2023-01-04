@@ -479,9 +479,11 @@ public:
   void
   send_response(rmw_request_id_t & req_id, typename ServiceT::Response & response)
   {
+    std::cout << "Sending response" << __PRETTY_FUNCTION__ << std::endl;
     rcl_ret_t ret = rcl_send_response(get_service_handle().get(), &req_id, &response);
 
     if (ret != RCL_RET_OK) {
+        std::cout << "Response not received " << __PRETTY_FUNCTION__ << std::endl;
       rclcpp::exceptions::throw_from_rcl_error(ret, "failed to send response");
     }
   }
