@@ -54,7 +54,9 @@ LifecycleNode::LifecycleNode(
     "",
     options,
     enable_communication_interface)
-{}
+{
+  std::cerr << "[DEBUG] New node lifecycle other const" << node_name << std::endl;
+}
 
 LifecycleNode::LifecycleNode(
   const std::string & node_name,
@@ -109,6 +111,7 @@ LifecycleNode::LifecycleNode(
   node_options_(options),
   impl_(new LifecycleNodeInterfaceImpl(node_base_, node_services_))
 {
+  std::cerr << "[DEBUG] New node lifecycle " << node_name << std::endl;
   impl_->init(enable_communication_interface);
 
   register_on_configure(

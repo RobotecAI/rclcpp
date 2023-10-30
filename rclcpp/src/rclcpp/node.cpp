@@ -210,6 +210,12 @@ Node::Node(
   sub_namespace_(""),
   effective_namespace_(create_effective_namespace(this->get_namespace(), sub_namespace_))
 {
+  std::cerr << "<<<[DEBUG]  New node " << node_name << std::endl;
+  int i = 0;
+  for (const auto& s : node_graph_->get_node_names()) {
+    std::cout << "<<<<<< [DEBUG] [" << ++i << "] " << s << std::endl;
+  }
+  std::cerr << "<<< [DEBUG] End new node " << node_name << std::endl;
   // we have got what we wanted directly from the overrides,
   // but declare the parameters anyway so they are visible.
   rclcpp::detail::declare_qos_parameters(
@@ -243,6 +249,7 @@ Node::Node(
   sub_namespace_(extend_sub_namespace(other.get_sub_namespace(), sub_namespace)),
   effective_namespace_(create_effective_namespace(other.get_namespace(), sub_namespace_))
 {
+  std::cerr << "[DEBUG] New node copy " << std::endl;
   // Validate new effective namespace.
   int validation_result;
   size_t invalid_index;
@@ -433,6 +440,10 @@ Node::remove_on_set_parameters_callback(const OnSetParametersCallbackHandle * co
 std::vector<std::string>
 Node::get_node_names() const
 {
+  int i = 0;
+  for (const auto& s : node_graph_->get_node_names()) {
+    std::cout << "<<<< [DEBUG] [" << ++i << "] " << s << std::endl;
+  }
   return node_graph_->get_node_names();
 }
 

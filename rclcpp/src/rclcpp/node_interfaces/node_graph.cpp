@@ -292,6 +292,7 @@ NodeGraph::get_subscriber_names_and_types_by_node(
 std::vector<std::string>
 NodeGraph::get_node_names() const
 {
+  std::cout << "<<< [DEBUG] Getting node names" << std::endl;
   std::vector<std::string> nodes;
   auto names_and_namespaces = get_node_names_and_namespaces();
 
@@ -395,6 +396,7 @@ NodeGraph::get_node_names_with_enclaves() const
 std::vector<std::pair<std::string, std::string>>
 NodeGraph::get_node_names_and_namespaces() const
 {
+  std::cout << "[DEBUG] NodeGraph::get_node_names_and_namespaces()" << std::endl;
   rcutils_string_array_t node_names_c =
     rcutils_get_zero_initialized_string_array();
   rcutils_string_array_t node_namespaces_c =
